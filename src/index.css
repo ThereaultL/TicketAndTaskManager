@@ -9,45 +9,6 @@ body {
   background-color: #17161e;
 }
 
-.navbar {
-  display: flex;
-  position: sticky;
-  align-items: center;
-  justify-content: space-between;
-  top: 0px;
-  background: #1b1a23;
-  background-blend-mode: darken;
-  background-size: cover;
-  color: white;
-  padding: 10px 20px;
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-}
-
-.nav-list li {
-  margin-right: 20px;
-}
-
-.nav-list li:last-child {
-  margin-right: 0;
-}
-
-.nav-list li a {
-  text-decoration: none;
-  color: rgb(229, 243, 243);
-  font-size: 18px;
-  transition: color 0.3s ease-in-out;
-}
-
-/* need to fix: add a browserRoute to index maybe */
-.nav-list li a:active {
-  background-color: #17161e;
-  /* Change the color on hover */
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

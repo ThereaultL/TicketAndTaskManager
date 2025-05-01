@@ -1,4 +1,3 @@
-import './TicketDetail.css';
 
 function TicketDetail() {
   return (
