@@ -1,11 +1,17 @@
+import React from "react";
+import "./TicketForm.css"
 
-
-function TicketForm() {
+export default function TicketForm() {
   return (
-    <div className="TicketForm">
-      
+    <div className="ticket-form">
+      <div class="form-box">
+        <p>Ticket Title:</p>
+        <input class="user-input" />
+      </div>
+      <div class="form-box">
+        <p>Ticket Description:</p>
+        <input class="user-input" />
+      </div>
     </div>
   );
 }
-
-export default TicketForm;

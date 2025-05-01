@@ -11,8 +11,8 @@ export default function App() {
 
       <Routes>
                 <Route path="/" element={<TicketList />} />
-                <Route path="/about" element={<TicketForm />} />
-                <Route path="/about" element={<TicketDetail />} />
+                <Route path="/TicketForm" element={<TicketForm />} />
+                <Route path="/TicketDetail" element={<TicketDetail />} />
       </Routes>
     </div>
   }
