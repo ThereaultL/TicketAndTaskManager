@@ -12,6 +12,7 @@ export default function TicketForm() {
         <p>Ticket Description:</p>
         <input class="user-input" />
       </div>
+      <button type="submit" class="button">Submit Ticket</button>
     </div>
   );
 }

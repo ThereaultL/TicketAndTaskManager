@@ -17,10 +17,24 @@
 }
 
 .user-input{
-    justify-self: right;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 20px;
-    height: 75%;
-    width: 80%;
+    margin-top: 7px;
+
+    position: absolute;
+    right: 80px; /* Adds spacing from the right edge */
+
+    height: 30px;
+    width: 70%;
+}
+
+.button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+    background-color: #17161e;
+    color: rgb(69, 116, 204);
+    border-style: none;
+}
+
+.button:hover{
+    cursor: pointer;
 }
