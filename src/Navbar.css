@@ -1,4 +1,4 @@
-nav {
+.navbar {
     display: flex;
     position: sticky;
     align-items: center;
@@ -7,7 +7,7 @@ nav {
     background: #201f2a;
     background-blend-mode: darken;
     background-size: cover;
-    color: white;
+    color: rgb(229, 243, 243);
     padding: 10px 20px;
     margin-bottom: 30px;
 }
@@ -25,14 +25,14 @@ ul li:last-child {
     margin-right: 0;
 }
   
-nav a {
+.navbar a {
     text-decoration: none;
     color: rgb(229, 243, 243);
     font-size: 18px;
     transition: color 0.3s ease-in-out;
 }
   
-nav a.active {
+.navbar a.active {
     border-radius: 15px;
     padding: 10px 20px;
     background-color: #17161e;

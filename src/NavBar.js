@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 export default function Navbar() {
     return <div>
-        <nav>
+        <nav class="navbar">
             <ul>
                 <li>
                     <NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>Ticket List</NavLink>
@@ -12,9 +12,6 @@ export default function Navbar() {
                 <li>
                     <NavLink to="/TicketForm" end className={({ isActive }) => isActive ? "active" : ""}>Ticket Form</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/TicketDetail" end className={({ isActive }) => isActive ? "active" : ""}>Ticket Detail</NavLink>
-                </li> 
             </ul>
         </nav>
     </div>

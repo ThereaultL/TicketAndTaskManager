@@ -13,8 +13,6 @@ export default function App() {
                 <Route path="/" element={<TicketList />} />
                 <Route path="/about" element={<TicketForm />} />
                 <Route path="/about" element={<TicketDetail />} />
-        </Routes>
-
-      <TicketList />
+      </Routes>
     </div>
   }
