@@ -4,7 +4,7 @@ import "./TicketSummary.css";
 
 export default function TicketSummary() {
     return (
-    <div class="ticket-sum">
+    <div class="screen-box">
         {/** Ticket preview, with descriptive title and a ticket number */}
         <div class="sum">
             <h1>Ticket Title</h1>

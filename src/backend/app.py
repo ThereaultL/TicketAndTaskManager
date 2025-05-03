@@ -10,7 +10,12 @@ ticket_id_counter = tickets.length()
 
 @app.route("/", methods=["GET"])
 def get_tickets():
-    return
+    """
+    I don't know if I should return the entire array of tickets, and then map the
+    array inside of TicketList, or i could pass in a param id and retrun just that
+    single ticket
+    """
+    return tickets;
 
 @app.route("/TicketForm", methods=["POST"])
 def create_ticket():
@@ -46,7 +51,7 @@ def delete_ticket(id):
     id : int
         The ticket id number.
     """
-    tickets[id].remove
+    tickets[id].remove;
 
 
 def main():
