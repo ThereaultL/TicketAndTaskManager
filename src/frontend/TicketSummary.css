@@ -32,6 +32,8 @@
 .box {
     margin: 0;
     padding: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
     border-left: 3.5px solid #201f2a;
     display: flex;
     align-items: center;

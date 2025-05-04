@@ -10,8 +10,9 @@ function TicketList() {
           <p>Summary</p>
         </div>
         <div class="right-info-bar">
+          <p>Priority</p>
           <p>Status</p>
-          <p>View More</p>
+          <p class ="info-box">View More</p>
         </div>
       </div>
 

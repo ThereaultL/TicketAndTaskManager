@@ -12,6 +12,7 @@ export default function TicketSummary() {
         </div>
         {/** Ticket information such as status, and view more details link */}
         <div class="ticket-content">
+            <p class="box">Priority</p>
             <p class ="box">Status</p>
             <div class="box">
                 <NavLink to="/TicketDetail">Details</NavLink>

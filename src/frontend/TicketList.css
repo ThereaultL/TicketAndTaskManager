@@ -17,10 +17,19 @@
 
 .right-info-bar {
     display: flex;
+    justify-content: center;
     align-items: stretch;
 }
 
 .right-info-bar p{
-    padding-left: 13px;
-    padding-right: 32px;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-box{
+    padding-left: 40px;
+    padding-right: 40px;
 }
