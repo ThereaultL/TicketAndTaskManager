@@ -15,26 +15,32 @@ export default function TicketForm() {
     setDescription(event.target.value);
   }
 
-  const handleSubmit = (event) => {
-    setTitle("");
-    setDescription("");
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  }
 
-  //use on submit
-  useEffect(() => {
-    const fetchTicket = async () => {
-        const response = await fetch(
-          "http://localhost:3000/TicketForm", {
-            method : "POST",
-            body: JSON.stringify({
-              title: title,
-              description: description,
-            }),
-          }
-        )
+    const response = await fetch(
+      "http://localhost:3000/TicketForm", {
+        method : "POST",
+        body: JSON.stringify({
+          title: title,
+          description: description,
+        }),
+      }
+    )
+
+    if (response.ok) {
+      const newTicket = await response.json();
+      console.log("Ticket created:", newTicket);
+      
+      // Reset form fields
+      setTitle("");
+      setDescription("");
+      
+      // Optionally trigger a state update to re-render TicketSummary
+    } else {
+      console.error("Failed to create ticket");
     }
-  }); 
+  }
 
   return (
     <div className="ticket-form">

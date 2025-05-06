@@ -2,6 +2,21 @@ import './TicketList.css';
 import TicketSummary from './TicketSummary';
 
 function TicketList() {
+  const [tickets, setTickets] = useState([]);
+
+  const listTickets = tickets.map(index => {
+    <TicketSummary id={index} title={tickets[index].title} />
+  });
+
+    useEffect(() => {
+        const fetchTickets = async () => {
+        const response = await fetch("http://localhost:3000/");
+        const data = await response.json();
+        setTickets(data);
+        };
+        fetchTickets();
+    }, []);
+
   return (
     <div>
       <div class="info-bar">
@@ -10,13 +25,12 @@ function TicketList() {
           <p>Summary</p>
         </div>
         <div class="right-info-bar">
-          <p>Priority</p>
           <p>Status</p>
-          <p class ="info-box">View More</p>
+          <p>View More</p>
         </div>
       </div>
 
-      <TicketSummary/>
+      {listTickets}
       
     </div>
   );
