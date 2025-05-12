@@ -1,5 +1,4 @@
 import React from "react";
-import "./TicketDetail.css";
 import "./TicketSummary.css";
 
 function TicketDetail() {

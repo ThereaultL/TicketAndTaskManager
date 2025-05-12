@@ -6,7 +6,7 @@ CORS(app)
 
 #Global Variables - Ticket Storage
 tickets = []
-ticket_id_counter = tickets.length()
+ticket_id_counter = len(tickets)
 
 @app.route("/", methods=["GET"])
 def get_tickets():
@@ -34,7 +34,7 @@ def update_ticket(ids):
     id : int
         The ticket id number.
     """
-    tickets[id] = ticket_info
+    return
 
 @app.route("/", methods=["DELETE"])
 def delete_ticket(id):
@@ -48,9 +48,11 @@ def delete_ticket(id):
     """
     tickets[id].remove
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    return jsonify({"message": "pong"})
 
-def main():
-    return
 
 if __name__ == "__main__":
-    main()
+    print("Flask is running...")
+    app.run()

@@ -19,14 +19,17 @@ export default function TicketForm() {
     event.preventDefault();
 
     const response = await fetch(
-      "http://localhost:3000/TicketForm", {
-        method : "POST",
+      "http://localhost:5000/TicketForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           title: title,
           description: description,
         }),
       }
-    )
+    );
 
     if (response.ok) {
       const newTicket = await response.json();

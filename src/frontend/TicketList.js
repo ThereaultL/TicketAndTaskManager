@@ -1,7 +1,15 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
 import './TicketList.css';
 import TicketSummary from './TicketSummary';
 
 function TicketList() {
+
+  fetch("http://localhost:5000/ping")
+  .then((res) => res.json())
+  .then((data) => console.log(data))
+  .catch((err) => console.error("Ping failed:", err));
+
   const [tickets, setTickets] = useState([]);
 
   const listTickets = tickets.map(index => {
