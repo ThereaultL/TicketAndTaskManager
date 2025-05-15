@@ -1,21 +1,21 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
 import './TicketList.css';
 import TicketSummary from './TicketSummary';
 
 function TicketList() {
+
+  const API = process.env.REACT_APP_API;
+
+  //testing connecting to backend
+  fetch(`${API}/ping`)
+  .then((res) => res.json())
+  .then((data) => console.log(data))
+  .catch((err) => console.error("Ping failed:", err));
+
   const [tickets, setTickets] = useState([]);
 
-  const listTickets = tickets.map(index => {
-    <TicketSummary id={index} title={tickets[index].title} />
-  });
-
-    useEffect(() => {
-        const fetchTickets = async () => {
-        const response = await fetch("http://localhost:3000/");
-        const data = await response.json();
-        setTickets(data);
-        };
-        fetchTickets();
-    }, []);
+  //Map tickets to the ticket list
 
   return (
     <div>
@@ -28,10 +28,7 @@ function TicketList() {
           <p>Status</p>
           <p>View More</p>
         </div>
-      </div>
-
-      {listTickets}
-      
+      </div>  
     </div>
   );
 }

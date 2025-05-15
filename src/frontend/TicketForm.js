@@ -3,6 +3,8 @@ import "./TicketForm.css"
 
 export default function TicketForm() {
 
+  const API = process.env.REACT_APP_API;
+
   //set ticket information based on user input
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,14 +21,17 @@ export default function TicketForm() {
     event.preventDefault();
 
     const response = await fetch(
-      "http://localhost:3000/TicketForm", {
-        method : "POST",
+      `${API}/TicketForm`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           title: title,
           description: description,
         }),
       }
-    )
+    );
 
     if (response.ok) {
       const newTicket = await response.json();
