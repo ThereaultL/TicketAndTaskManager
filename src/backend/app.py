@@ -55,4 +55,4 @@ def ping():
 
 if __name__ == "__main__":
     print("Flask is running...")
-    app.run()
+    app.run(debug=True, port=5000)

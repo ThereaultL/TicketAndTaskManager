@@ -5,25 +5,29 @@ import TicketSummary from './TicketSummary';
 
 function TicketList() {
 
-  fetch("http://localhost:5000/ping")
+  const API = process.env.REACT_APP_API;
+
+  //testing connecting to backend
+  fetch(`${API}/ping`)
   .then((res) => res.json())
   .then((data) => console.log(data))
   .catch((err) => console.error("Ping failed:", err));
 
   const [tickets, setTickets] = useState([]);
 
+  //need to debug: tickets are not fetching
   const listTickets = tickets.map(index => {
     <TicketSummary id={index} title={tickets[index].title} />
   });
 
-    useEffect(() => {
-        const fetchTickets = async () => {
-        const response = await fetch("http://localhost:3000/");
-        const data = await response.json();
-        setTickets(data);
-        };
-        fetchTickets();
-    }, []);
+  useEffect(() => {
+    const fetchTickets = async () => {
+      const response = await fetch(`${API}/`);
+      const data = await response.json();
+      setTickets(data);
+    };
+    fetchTickets();
+  }, []);
 
   return (
     <div>
