@@ -8,9 +8,16 @@ Users can view a list of current tickets, add a new ticket with details like tit
 * Yarn (optional)<br>
 
 ### Executing program
+**Frontend ./client**
 ```
 npm install
 npm start
+```
+**Backend ./server**
+```
+npm install express
+npm install cors
+node server.js
 ```
 
 ## License
