@@ -1,0 +1,40 @@
+.ticket-form {
+    margin-left: 45px;
+    margin-right: 45px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-style: solid;
+    border-color: #201f2a;
+    border-width: 3px;
+    background-color: #252432;
+    color: azure;
+}
+
+.form-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.user-input{
+    margin-top: 7px;
+
+    position: absolute;
+    right: 80px; /* Adds spacing from the right edge */
+
+    height: 30px;
+    width: 70%;
+}
+
+.button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+    background-color: #17161e;
+    color: rgb(69, 116, 204);
+    border-style: none;
+}
+
+.button:hover{
+    cursor: pointer;
+}
