@@ -12,18 +12,19 @@ function TicketList() {
 
   const [tickets, setTickets] = useState([]);
 
-  const listTickets = tickets.map(index => {
-    <TicketSummary id={index} title={tickets[index].title} />
-  });
-
-    useEffect(() => {
+  useEffect(() => {
         const fetchTickets = async () => {
-        const response = await fetch("http://localhost:3000/");
+        const response = await fetch("http://localhost:5000/");
         const data = await response.json();
         setTickets(data);
         };
         fetchTickets();
-    }, []);
+  }, []);
+
+  const listTickets = tickets.map(index => {
+    <TicketSummary id={index} title={tickets[index].title} />
+  });
+
 
   return (
     <div>
