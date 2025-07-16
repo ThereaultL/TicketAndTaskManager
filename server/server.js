@@ -1,15 +1,13 @@
 const express = require("express");
 const cors = require("cors")
 
-const PORT = 5000;
+const PORT = process.env.PORT;
 
-let tickets = [];
+let tickets = []; //list on existing tickets (non-closed status)
 
-//initilize the server
-const app = express();
+const app = express(); //initilize the server
 app.use(cors());
-//parsing applicaiton and json
-app.use(express.json());
+app.use(express.json()); //parsing applicaiton and json
 
 /**
  * Gets the list of open tickets
@@ -23,13 +21,13 @@ app.get("/", (req, res) => {
  * open tickets
  */
 app.post("/TicketForm", (req, res) => {
-    // const title = req.body.title;
+    //const title = req.body.title;
     //const description = req.body.title;
-    const {title, description} = req.body; //parsed body from the request
+    const {title, description} = req.body; //parsed body from the request, shortend
     let newTicket = {
-        id : tickets.length + 1,
-        title,
-        description,
+        id : tickets.length,
+        title : title,
+        description : description,
         status : "Open"
     };
     tickets.push(newTicket);
@@ -38,13 +36,15 @@ app.post("/TicketForm", (req, res) => {
     res.status(201).json(newTicket);
 });
 
-function updateTicket() {
-    return null
-}
+/**
+ * Update the properties of an existing ticket
+ */
+//app.post("");
 
-function closeTicket() {
-    return null
-}
+/**
+ * Close a ticket by removing the ticket from list
+ */
+//app.delete("");
 
 /**
  * Testing
