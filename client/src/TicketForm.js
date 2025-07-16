@@ -1,6 +1,14 @@
-import React, { useEffect, useState } from "react";
+import useState from "react";
 import "./TicketForm.css"
 
+const API = process.env.REACT_APP_API;
+
+/**
+ * A form which allows a user to create a ticket by entering a title, and description. Once 
+ * a ticket is submitted, then the ticket is added to the list of ongoing tickets. If a ticket
+ * fails to populate, then an error is thrown in the console and ticket form will not clear.
+ * @returns Form sheet for user to create a new ticket
+ */
 export default function TicketForm() {
 
   //set ticket information based on user input
@@ -19,7 +27,7 @@ export default function TicketForm() {
     event.preventDefault();
 
     const response = await fetch(
-      "http://localhost:5000/TicketForm", {
+      `${API}/TicketForm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,28 +1,36 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import './TicketList.css';
 import TicketSummary from './TicketSummary';
 
-function TicketList() {
+const API = process.env.REACT_APP_API;
 
-  fetch("http://localhost:5000/ping")
+/**
+ * Fetches the list of existing tickets and maps those tickets to the homepage.
+ * @return an overview of all existing tickets
+ */
+export default function TicketList() {
+
+  //Testing
+  fetch(`${API}/ping`)
   .then((res) => res.json())
   .then((data) => console.log("Ping:", data))
   .catch((err) => console.error("Ping failed", err));
 
   const [tickets, setTickets] = useState([]);
 
+  //Set tickets
   useEffect(() => {
         const fetchTickets = async () => {
-        const response = await fetch("http://localhost:5000/");
-        const data = await response.json();
+        const res = await fetch(`${API}/`);
+        const data = await res.json();
         setTickets(data);
         };
         fetchTickets();
   }, []);
 
-  const listTickets = tickets.map(index => {
-    <TicketSummary id={index} title={tickets[index].title} />
+  //Map the existing tickets
+  const listTickets = tickets.map(ticket => {
+    return <TicketSummary ticket={ticket} />
   });
 
 
@@ -44,5 +52,3 @@ function TicketList() {
     </div>
   );
 }
-
-export default TicketList;
