@@ -20,7 +20,7 @@ export default function TicketSummary({ticket}) {
             <div class="ticket-content">
                 <p class ="box">{ticket.status}</p>
                 <div class="box">
-                    <NavLink to="/TicketDetail">Details</NavLink>
+                    <NavLink to="/TicketDetail" state={ticket} >Details</NavLink>
                 </div>
             </div>
         </div>
