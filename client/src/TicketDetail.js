@@ -71,19 +71,33 @@ function TicketDetail() {
 
   return (
     <div className="screen-box">
+      <div class="detail-sum">
         <div class="left-box">
-          <p>Title: </p>
-          <input value={title} onChange={handleTitleChange} />
-          <p>Description: </p>
-          <input value={description} onChange={handleDescriptionChange} />
+          <div class="form-row">
+            <p>Title: </p>
+            <input class ="input" value={title} onChange={handleTitleChange} />
+          </div>
+          <div class="form-row">
+            <p>Description: </p>
+            <input class ="input" value={description} onChange={handleDescriptionChange} />
+          </div>
         </div>
         <div class="right-box">
-          <p>ID: {ticket.id}</p>
+          <div class="form-row">
+          <p>ID: </p>
+          <input class ="input" value={ticket.id} readOnly/>
+          </div>
+          <div class="form-row">
           {/** Want to change into a drop box with status options */}
-          <p>Status: {ticket.status}</p>
+          <p>Status: </p>
+          <input class ="input" value={ticket.status} readOnly/>
+          </div>
         </div>
+      </div>
+      <div class="button-row">
         <button class="button" onClick={handleUpdate} >Update</button>
         <button class="button" onClick={handleResolve} >Resolve</button>
+      </div>
     </div>
   );
 }
