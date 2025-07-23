@@ -39,7 +39,19 @@ app.post("/TicketForm", (req, res) => {
 /**
  * Update the properties of an existing ticket
  */
-//app.post("");
+app.post("/Update", (req, res) => {
+    let ticket = req.body;
+    i = tickets.findIndex(t => t.id === ticket.id);
+    if (i > -1) {
+        //ID is not a changeable property
+        tickets[i].title = ticket.title;
+        tickets[i].description = ticket.description;
+        tickets[i].status = ticket.status;
+        res.status(200).json(tickets[i]); //200 HTTP code : OK
+    } else {
+        res.status(404).json({ message: "Ticket not found" }); //404 HTTP code : Not Found
+    }
+});
 
 /**
  * Close a ticket by removing the ticket from list
@@ -47,11 +59,13 @@ app.post("/TicketForm", (req, res) => {
 app.delete("/resolve", (req, res) => {
     let ticket = req.body;
     ticket.status = "Resolved";
-    i = tickets.indexOf(ticket);
+    i = tickets.findIndex(t => t.id === ticket.id);
     if (i > -1) {
         tickets.splice(i, 1); // Remove the ticket from the list
+        res.status(200).json({ message: "Ticket resolved successfully" }); //200 HTTP code : OK
+    } else {
+        res.status(404).json({ message: "Ticket not found" }); //404 HTTP code : Not Found
     }
-    res.status(200).json({ message: "Ticket resolved successfully" });
 
 });
 
