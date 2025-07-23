@@ -44,7 +44,16 @@ app.post("/TicketForm", (req, res) => {
 /**
  * Close a ticket by removing the ticket from list
  */
-//app.delete("");
+app.delete("/resolve", (req, res) => {
+    let ticket = req.body;
+    ticket.status = "Resolved";
+    i = tickets.indexOf(ticket);
+    if (i > -1) {
+        tickets.splice(i, 1); // Remove the ticket from the list
+    }
+    res.status(200).json({ message: "Ticket resolved successfully" });
+
+});
 
 /**
  * Testing
