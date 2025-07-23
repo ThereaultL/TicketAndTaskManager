@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import "./TicketSummary.css";
+import "./TicketDetail.css";
+import "./TicketForm.css";
 
 function TicketDetail() {
   const location = useLocation();
@@ -62,7 +64,6 @@ function TicketDetail() {
     if (response.ok) {
       const updatedTicket = await response.json();
       alert("Ticket resolved!");
-      // Optionally, you can redirect or update the state here
     } else {
       alert("Failed to resolve ticket.");
     }
@@ -70,13 +71,13 @@ function TicketDetail() {
 
   return (
     <div className="screen-box">
-        <div>
-          <p>Title:</p>
+        <div class="left-box">
+          <p>Title: </p>
           <input value={title} onChange={handleTitleChange} />
-          <p>Description</p>
+          <p>Description: </p>
           <input value={description} onChange={handleDescriptionChange} />
         </div>
-        <div>
+        <div class="right-box">
           <p>ID: {ticket.id}</p>
           {/** Want to change into a drop box with status options */}
           <p>Status: {ticket.status}</p>

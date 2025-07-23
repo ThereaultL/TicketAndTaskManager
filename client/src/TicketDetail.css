@@ -1,0 +1,14 @@
+.left-box, .right-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.left-box, .right-box p{
+    margin: 0;
+    padding: 10px;
+}
+
+.screen-box {
+    padding: 10px;
+}
