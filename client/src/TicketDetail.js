@@ -10,6 +10,7 @@ function TicketDetail() {
 
   const [title, setTitle] = useState(ticket.title);
   const [description, setDescription] = useState(ticket.description);
+  const [status, setStatus] = useState(ticket.status);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -17,30 +18,36 @@ function TicketDetail() {
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   }
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value);
+  }
 
   const handleUpdate = async (event) => {
     event.preventDefault();
+    if(status != "Resolved") {
+      const response = await fetch(
+        "http://localhost:5000/Update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: ticket.id,
+            title: title,
+            description: description,
+            status: status,
+          }),
+        }
+      );
 
-    const response = await fetch(
-      "http://localhost:5000/Update", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: ticket.id,
-          title: title,
-          description: description,
-          status: ticket.status,
-        }),
+      if (response.ok) {
+        const newTicket = await response.json();
+        alert("Ticket updated!");
+      } else {
+        alert("Failed to update ticket.");
       }
-    );
-
-    if (response.ok) {
-      const newTicket = await response.json();
-      alert("Ticket updated!");
-    } else {
-      alert("Failed to update ticket.");
+    } else{
+      handleResolve(event); // Call handleResolve to resolve the ticket if status is "Resolved"
     }
   }
 
@@ -56,7 +63,7 @@ function TicketDetail() {
           id: ticket.id,
           title: title,
           description: description,
-          status: ticket.status, 
+          status: status, 
         }),
       }
     );
@@ -90,7 +97,11 @@ function TicketDetail() {
           <div class="form-row">
           {/** Want to change into a drop box with status options */}
           <p>Status: </p>
-          <input class ="input" value={ticket.status} readOnly/>
+          <select onChange={handleStatusChange} value={status}>
+            <option value="Open">Open</option>
+            <option value="Hold">Hold</option>
+            <option value="Resolved">Resolved</option>
+          </select>
           </div>
         </div>
       </div>
