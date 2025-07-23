@@ -5,7 +5,6 @@ import "./TicketSummary.css";
 function TicketDetail() {
   const location = useLocation();
   const ticket = location.state;
-  console.log(ticket);
 
   const [title, setTitle] = useState(ticket.title);
   const [description, setDescription] = useState(ticket.description);
@@ -18,13 +17,10 @@ function TicketDetail() {
   }
 
   const handleUpdate = async (event) => {
-  
-  }
-
-  const handleResolve = async (event) => {
     event.preventDefault();
+
     const response = await fetch(
-      "/", {
+      "http://localhost:5000/Update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,23 +29,47 @@ function TicketDetail() {
           id: ticket.id,
           title: title,
           description: description,
-          status: "Resolved", // Assuming you want to set the status to Resolved
+          status: ticket.status,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      const newTicket = await response.json();
+      alert("Ticket updated!");
+    } else {
+      alert("Failed to update ticket.");
+    }
+  }
+
+  const handleResolve = async (event) => {
+    event.preventDefault();
+    const response = await fetch(
+      "/resolve", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: ticket.id,
+          title: title,
+          description: description,
+          status: ticket.status, 
         }),
       }
     );
 
     if (response.ok) {
       const updatedTicket = await response.json();
-      console.log("Ticket updated:", updatedTicket);
+      alert("Ticket resolved!");
       // Optionally, you can redirect or update the state here
     } else {
-      console.error("Failed to update ticket");
+      alert("Failed to resolve ticket.");
     }
   }
 
   return (
     <div className="screen-box">
-      <form>
         <div>
           <p>Title:</p>
           <input value={title} onChange={handleTitleChange} />
@@ -61,9 +81,8 @@ function TicketDetail() {
           {/** Want to change into a drop box with status options */}
           <p>Status: {ticket.status}</p>
         </div>
-        <button type="submit" class="button">Update</button>
-        <button type="submit" class="button">Resolve</button>
-      </form>
+        <button class="button" onClick={handleUpdate} >Update</button>
+        <button class="button" onClick={handleResolve} >Resolve</button>
     </div>
   );
 }
