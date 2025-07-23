@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors")
 
-const PORT = process.env.PORT;
+const PORT = 5000;
 
 let tickets = []; //list on existing tickets (non-closed status)
 
@@ -12,7 +12,7 @@ app.use(express.json()); //parsing applicaiton and json
 /**
  * Gets the list of open tickets
  */
-app.get("/", (req, res) => {
+app.get("/List", (req, res) => {
     res.json(tickets);
 });
 
