@@ -3,11 +3,14 @@ const cors = require("cors")
 
 const PORT = 5000;
 
-let tickets = []; //list on existing tickets (non-closed status)
-
 const app = express(); //initilize the server
 app.use(cors());
 app.use(express.json()); //parsing applicaiton and json
+
+/** Global Variable */
+let tickets = []; //list on existing tickets (non-closed status)
+let idStorage = []; //list of existing ticket IDs to prevent duplicates
+
 
 /**
  * Gets the list of open tickets
@@ -25,15 +28,14 @@ app.post("/TicketForm", (req, res) => {
     //const description = req.body.title;
     const {title, description} = req.body; //parsed body from the request, shortend
     let newTicket = {
-        id : tickets.length,
+        id : idStorage.length,
         title : title,
         description : description,
         status : "Open"
     };
     tickets.push(newTicket);
     console.log(`Ticket Created: ${title}, ${description}`);
-    //201 HTTP code : Created POST
-    res.status(201).json(newTicket);
+    res.status(201).json(newTicket); //201 HTTP code : Created POST
 });
 
 /**
@@ -70,7 +72,7 @@ app.delete("/resolve", (req, res) => {
 });
 
 /**
- * Testing
+ * Testing communication between client and server
  */
 app.get("/ping", (req, res) => {
   res.json({ message: "pong" });
