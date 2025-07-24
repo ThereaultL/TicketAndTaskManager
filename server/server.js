@@ -9,7 +9,7 @@ app.use(express.json()); //parsing applicaiton and json
 
 /** Global Variable */
 let tickets = []; //list on existing tickets (non-closed status)
-let idStorage = []; //list of existing ticket IDs to prevent duplicates
+let idStorage = 0; //list of existing ticket IDs to prevent duplicates
 
 
 /**
@@ -28,11 +28,12 @@ app.post("/TicketForm", (req, res) => {
     //const description = req.body.title;
     const {title, description} = req.body; //parsed body from the request, shortend
     let newTicket = {
-        id : idStorage.length,
+        id : idStorage,
         title : title,
         description : description,
         status : "Open"
     };
+    idStorage++;
     tickets.push(newTicket);
     console.log(`Ticket Created: ${title}, ${description}`);
     res.status(201).json(newTicket); //201 HTTP code : Created POST
