@@ -1,0 +1,38 @@
+
+.left-box, .right-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-box p, .right-box p{
+    margin: 0;
+    padding: 10px;
+
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input[readonly] {
+    border-style: dotted;
+    cursor: not-allowed;
+    color: #777;
+}
+
+.screen-box {
+    padding: 10px;
+}
+
+.button-row {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button-row button {
+    margin: 10px;
+}

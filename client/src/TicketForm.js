@@ -1,7 +1,5 @@
-import useState from "react";
+import { useState } from "react";
 import "./TicketForm.css"
-
-const API = process.env.REACT_APP_API;
 
 /**
  * A form which allows a user to create a ticket by entering a title, and description. Once 
@@ -27,7 +25,7 @@ export default function TicketForm() {
     event.preventDefault();
 
     const response = await fetch(
-      `${API}/TicketForm`, {
+      "/TicketForm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

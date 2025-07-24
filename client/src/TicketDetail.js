@@ -1,49 +1,114 @@
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import "./TicketSummary.css";
+import "./TicketDetail.css";
+import "./TicketForm.css";
 
-function TicketDetail({ticket}) {
-
+function TicketDetail() {
   const location = useLocation();
-  //const ticket = location.state?.ticket;
+  const ticket = location.state;
 
-  if (!location.state?.ticket) {
-    return <p>{ticket} : Ticket was not found.</p>;
+  const [title, setTitle] = useState(ticket.title);
+  const [description, setDescription] = useState(ticket.description);
+  const [status, setStatus] = useState(ticket.status);
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  }
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  }
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value);
   }
 
-  //set ticket information based on user input
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  
-  // const changeTitle = (event) => {
-  //   setTitle(event.target.value);
-  // }
-  
-  // const changeDescription = (event) => {
-  //   setDescription(event.target.value);
-  // }
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    if(status != "Resolved") {
+      const response = await fetch(
+        "http://localhost:5000/Update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: ticket.id,
+            title: title,
+            description: description,
+            status: status,
+          }),
+        }
+      );
 
-  const handleSubmit = async() => {
+      if (response.ok) {
+        const newTicket = await response.json();
+        alert("Ticket updated!");
+      } else {
+        alert("Failed to update ticket.");
+      }
+    } else{
+      handleResolve(event); // Call handleResolve to resolve the ticket if status is "Resolved"
+    }
+  }
 
+  const handleResolve = async (event) => {
+    event.preventDefault();
+    const response = await fetch(
+      "/resolve", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: ticket.id,
+          title: title,
+          description: description,
+          status: status, 
+        }),
+      }
+    );
+
+    if (response.ok) {
+      const updatedTicket = await response.json();
+      alert("Ticket resolved!");
+    } else {
+      alert("Failed to resolve ticket.");
+    }
   }
 
   return (
     <div className="screen-box">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <p>Left</p>
-          <p>Ticket Title:</p>
-          <input class="user-input" />
-          <p>Ticket ID:</p>
-          <p>?</p>
+      <div class="detail-sum">
+        <div class="left-box">
+          <div class="form-row">
+            <p>Title: </p>
+            <input class ="input" value={title} onChange={handleTitleChange} />
+          </div>
+          <div class="form-row">
+            <p>Description: </p>
+            <input class ="input" value={description} onChange={handleDescriptionChange} />
+          </div>
         </div>
-        <div>
-          <p>Right</p>
-          <p>Ticket Description:</p>
-          <input class="user-input" />
+        <div class="right-box">
+          <div class="form-row">
+          <p>ID: </p>
+          <input class ="input" value={ticket.id} readOnly/>
+          </div>
+          <div class="form-row">
+          {/** Want to change into a drop box with status options */}
+          <p>Status: </p>
+          <select onChange={handleStatusChange} value={status}>
+            <option value="Open">Open</option>
+            <option value="Hold">Hold</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+          </div>
         </div>
-        <button type="submit" class="button">Save Changes</button>
-      </form>
+      </div>
+      <div class="button-row">
+        <button class="button" onClick={handleUpdate} >Update</button>
+        <button class="button" onClick={handleResolve} >Resolve</button>
+      </div>
     </div>
   );
 }

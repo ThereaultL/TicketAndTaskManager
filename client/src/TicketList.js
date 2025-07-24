@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import './TicketList.css';
 import TicketSummary from './TicketSummary';
 
-const API = process.env.REACT_APP_API;
-
 /**
  * Fetches the list of existing tickets and maps those tickets to the homepage.
  * @return an overview of all existing tickets
@@ -11,7 +9,7 @@ const API = process.env.REACT_APP_API;
 export default function TicketList() {
 
   //Testing
-  fetch(`${API}/ping`)
+  fetch("/ping")
   .then((res) => res.json())
   .then((data) => console.log("Ping:", data))
   .catch((err) => console.error("Ping failed", err));
@@ -21,7 +19,7 @@ export default function TicketList() {
   //Set tickets
   useEffect(() => {
         const fetchTickets = async () => {
-        const res = await fetch(`${API}/`);
+        const res = await fetch("/List");
         const data = await res.json();
         setTickets(data);
         };
